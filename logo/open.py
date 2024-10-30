@@ -76,6 +76,21 @@ def main_window():
 
     # slideshow
     update_image()
+    category_button = Image.open('rounded.png').resize((140, 38))
+    button_img = ImageTk.PhotoImage(category_button)
+    category_button = tk.Button(root, image=button_img, text='Life', font=('Raleway', 14, 'bold'),
+    compound="center", fg="#001F3F", bg='#001F3F', borderwidth=0,activebackground='#001F3F')
+
+    category_button.image = button_img
+    category_button.place(x=15, y=320)
+
+    category_button = Image.open('rounded.png').resize((140, 38))
+    button_img = ImageTk.PhotoImage(category_button)
+    category_button = tk.Button(root, image=button_img, text='Education', font=('Raleway', 14, 'bold'),
+    compound="center", fg="#001F3F", bg='#001F3F', borderwidth=0,activebackground='#001F3F')
+
+    category_button.image = button_img
+    category_button.place(x=162, y=320)
     
 
 # screen delay
