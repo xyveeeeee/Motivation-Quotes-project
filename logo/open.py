@@ -76,21 +76,27 @@ def main_window():
 
     # slideshow
     update_image()
-    category_button = Image.open('rounded.png').resize((140, 38))
-    button_img = ImageTk.PhotoImage(category_button)
-    category_button = tk.Button(root, image=button_img, text='Life', font=('Raleway', 14, 'bold'),
-    compound="center", fg="#001F3F", bg='#001F3F', borderwidth=0,activebackground='#001F3F')
+   # Buttons
+    life_button_img = ImageTk.PhotoImage(Image.open('rounded.png').resize((140, 38)))
+    life_button = tk.Button(root, image=life_button_img, text='Life', font=('Raleway', 14, 'bold'),
+    compound="center", fg="#001F3F", bg='#001F3F', borderwidth=0,
+    activebackground='#001F3F', cursor='hand2')
+    life_button.image = life_button_img
+    life_button.place(x=15, y=320)
 
-    category_button.image = button_img
-    category_button.place(x=15, y=320)
+    edu_button_img = ImageTk.PhotoImage(Image.open('rounded2.png').resize((140, 38)))
+    edu_button = tk.Button(root, image=edu_button_img, text='Education', font=('Raleway', 14, 'bold'),
+    compound="center", fg="#201E43", bg='#001F3F', borderwidth=0,
+    activebackground='#001F3F', activeforeground='#EAD8B1', cursor='hand2')
+    edu_button.image = edu_button_img
+    edu_button.place(x=162, y=320) 
 
-    category_button = Image.open('rounded.png').resize((140, 38))
-    button_img = ImageTk.PhotoImage(category_button)
-    category_button = tk.Button(root, image=button_img, text='Education', font=('Raleway', 14, 'bold'),
-    compound="center", fg="#001F3F", bg='#001F3F', borderwidth=0,activebackground='#001F3F')
-
-    category_button.image = button_img
-    category_button.place(x=162, y=320)
+    success_button_img = ImageTk.PhotoImage(Image.open('rounded2.png').resize((140, 38)))
+    success_button = tk.Button(root, image=success_button_img, text='Success', font=('Raleway', 14, 'bold'),
+    compound="center", fg="#201E43", bg='#001F3F', borderwidth=0,
+    activebackground='#001F3F', activeforeground='#EAD8B1', cursor='hand2')
+    success_button.image = success_button_img
+    success_button.place(x=309, y=320)
     
 
 # screen delay
