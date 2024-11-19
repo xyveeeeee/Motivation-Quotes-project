@@ -25,7 +25,7 @@ lbl.pack()
 # Main window
 def main_window():
     root = tk.Tk()
-    root.title('Main')
+    root.title('MOTIVATION QUOTES COLLECTION')
     root.iconbitmap('logo2.ico')
     root.geometry("430x750")
     root.config(bg='#001F3F')
@@ -47,18 +47,12 @@ def main_window():
 
 
     # Logo title
-    title_label = Label(root, text="MOTIVATION QUOTES", font=("Raleway", 12, 'bold'), bg="#001F3F", fg="white")
+    title_label = Label(root, text="MOTIVATION QUOTES COLLECTION", font=("Raleway", 12, 'bold'), bg="#001F3F", fg="white")
     title_label.place(x=60, y=25)
 
-    # Add button
-    add_photo = Image.open('addbutton.png').resize((43, 36))
-    photo_img = ImageTk.PhotoImage(add_photo)
-    add_button = Label(root, image=photo_img, bg='#001F3F')
-    add_button.image = photo_img
-    add_button.place(x=360, y=16)
-
     # Image Slider
-    images = ['m1.jpg', 'm2.png', 'm3.jpg', 'm4.png', 'm5.png', 'm6.jpg', 'm7.png', 'm8.jpg', 'm9.png', 'm10.png']
+    images = ['m1.jpg', 'm2.png', 'm3.jpg', 'm4.png', 'm5.png', 
+    'm6.jpg', 'm7.png', 'm8.jpg', 'm9.png', 'm10.png']
     current_image = 0
     slider_width = 430
     slider_height = 220
@@ -78,8 +72,8 @@ def main_window():
     # Starter
     update_image()
     
-    navigation_frame = ctk.CTkFrame(root, width=400, height=80, fg_color='#001F3F')
-    navigation_frame.place(x=15, y=315)
+    navigation_frame = ctk.CTkFrame(root, width=500, height=80, fg_color='#001F3F')
+    navigation_frame.place(x=7, y=315)
 
     # content scrol
     scrollable_frame = ctk.CTkScrollableFrame(root, width=365, height=250, corner_radius=25, fg_color='#EAD8B1')
@@ -139,16 +133,6 @@ def main_window():
             messagebox.showinfo("Motivational Quoute Collection","Sucessfully added to Favorite")
             print("Successfully Removed!")
 
-    def add_or_remove_book(quote, bookmark):
-        if quote in bookmark:
-            bookmark.remove(quote)
-            messagebox.showinfo("Motivational Quoute Collection","Sucessfully removed from Bookmark")
-            print("Successfully Removed!")
-        else:
-            bookmark.append(quote)
-            messagebox.showinfo("Motivational Quoute Collection","Sucessfully added to Bookmark")
-            print("Successfully Removed!")
-
     # display th qoute
     def display_quotes(quotes):
         # destroy curnt content
@@ -185,11 +169,11 @@ def main_window():
 
             book_mark = tk.Button(home_label, image=book_mark_img, borderwidth=0, bg='#634345', activebackground='#634345', cursor='hand2',
                                    command=lambda quote=quote: saveFile(quote))
-            book_mark.image = book_mark_img
+            book_mark.image = book_mark_img #refrc
             book_mark.place(x=15, y=12)
 
-    life_button_active_img = ImageTk.PhotoImage(Image.open('rounded.png').resize((140, 38)))
-    life_button_inactive_img = ImageTk.PhotoImage(Image.open('rounded2.png').resize((140, 38)))     
+    life_button_active_img = ImageTk.PhotoImage(Image.open('rounded.png').resize((135, 38)))
+    life_button_inactive_img = ImageTk.PhotoImage(Image.open('rounded2.png').resize((135, 38)))     
     def active_button(button):
         # images to inactive
         life_button.config(image=life_button_inactive_img)
@@ -201,28 +185,31 @@ def main_window():
     # buttons
     life_button = tk.Button(navigation_frame, image=life_button_inactive_img, text='Life', font=('Raleway', 14, 'bold'),
                             compound="center", fg="#001F3F", bg='#001F3F', borderwidth=0, activebackground='#001F3F', cursor='hand2',
-                            command=lambda: [display_quotes(lifequotes), active_button(life_button)])
+                            command=lambda: [display_quotes(lifequotes), active_button(life_button)
+                                             ,page_button(home_frame, home_active, fav_inactive)])
     life_button.active_image = life_button_active_img
     life_button.place(x=0, y=0)
 
     edu_button = tk.Button(navigation_frame, image=life_button_inactive_img, text='Education', font=('Raleway', 14, 'bold'),
                            compound="center", fg="#201E43", bg='#001F3F', borderwidth=0, activebackground='#001F3F', cursor='hand2',
-                           command=lambda: [display_quotes(educationquotes), active_button(edu_button)])
+                           command=lambda: [display_quotes(educationquotes), active_button(edu_button)
+                                            ,page_button(home_frame, home_active, fav_inactive)])
     edu_button.active_image = life_button_active_img
-    edu_button.place(x=150, y=0)
+    edu_button.place(x=140, y=0)
 
     success_button = tk.Button(navigation_frame, image=life_button_inactive_img, text='Success', font=('Raleway', 14, 'bold'),
                                compound="center", fg="#201E43", bg='#001F3F', borderwidth=0, activebackground='#001F3F', cursor='hand2',
-                               command=lambda: [display_quotes(successquotes), active_button(success_button)])
+                               command=lambda: [display_quotes(successquotes), active_button(success_button)
+                                                ,page_button(home_frame, home_active, fav_inactive)])
     success_button.active_image = life_button_active_img
-    success_button.place(x=300, y=0)
+    success_button.place(x=280, y=0)
 
     # starting nav
     active_button(life_button)
     # startup
     display_quotes(lifequotes)
 
-                    # navigation content
+    # navigation content
     custom_frame2 = ctk.CTkFrame(root, width=130, height=55, corner_radius=35, fg_color='#EAD8B1')
     custom_frame2.place(x=150, y=686)  
                     
@@ -233,7 +220,7 @@ def main_window():
     fav_active = ImageTk.PhotoImage(Image.open('favorite.png').resize((30, 25)))
 
     # f t button images
-    def page_button(active_button, active_image, inactive_image):
+    def page_button(active_button, active_image, Extra_var):
         # Restt
         home_frame.config(image=home_inactive)
         favorite_frame.config(image=fav_inactive)
@@ -244,7 +231,8 @@ def main_window():
     home_frame = tk.Button(
         root, image=home_inactive, bg='#ead8b1', cursor='hand2', borderwidth=0,
         activebackground='#ead8b1',
-        command=lambda: [display_quotes(lifequotes), page_button(home_frame, home_active, fav_inactive)]
+        command=lambda: [display_quotes(lifequotes), page_button(home_frame, home_active, fav_inactive)
+                         ,active_button(life_button)]
     )
     home_frame.image = home_active
     home_frame.place(x=163, y=696)
@@ -256,12 +244,9 @@ def main_window():
     )
     favorite_frame.image = fav_active
     favorite_frame.place(x=228, y=701)
-
     page_button(home_frame, home_active, fav_inactive)
-                
-    
 # Screen delay
-splash_root.after(3000, lambda: [splash_root.destroy(), main_window()])
+splash_root.after(3000, lambda: [splash_root.destroy(), main_window()]) 
 
 # Splash screen mainloop
 splash_root.mainloop()
